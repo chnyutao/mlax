@@ -1,4 +1,6 @@
 .venv/
-.envrc
+__pycache__/
+wandb/
 
 .DS_Store
+.envrc
