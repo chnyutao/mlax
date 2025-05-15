@@ -32,7 +32,7 @@ class LinearRegression(eqx.Module):
 
 def loss_fn(model: LinearRegression, x: jax.Array, y: jax.Array) -> jax.Array:
     # mean squared error
-    return jnp.mean((jax.vmap(model)(x) - y) ** 2, axis=-1)
+    return jnp.mean((jax.vmap(model)(x) - y) ** 2)
 
 
 if __name__ == '__main__':
