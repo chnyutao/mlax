@@ -1,6 +1,6 @@
 # Linear Regression
 
-[Wandb Run](https://wandb.ai/chnyutao/mlax/runs/pqmld67e)
+[![wandb badge](https://img.shields.io/badge/Weights_&_Biases-FFCC33?style=for-the-badge&logo=WeightsAndBiases&logoColor=black)](https://wandb.ai/chnyutao/mlax/runs/pqmld67e)
 
 Simple linear regression with stochastic gradient descent (SGD).
 
