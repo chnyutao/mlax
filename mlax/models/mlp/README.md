@@ -10,4 +10,4 @@ Experiments are conducted on the MNIST[^1] dataset to predict the label (0-9) gi
 
 ![plot](https://api.wandb.ai/files/chnyutao/mlax/n2oh0ikv/media/images/plot_9390_4dd8daf5a88a68de1ccc.png)
 
-[^1] LeCun, Yann, et al. "Gradient-based learning applied to document recognition." _Proceedings of the IEEE_ 86.11 (1998): 2278-2324.
+[^1]: LeCun, Yann, et al. "Gradient-based learning applied to document recognition." _Proceedings of the IEEE_ 86.11 (1998): 2278-2324.
