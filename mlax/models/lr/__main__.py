@@ -2,11 +2,11 @@ import sys
 
 import equinox as eqx
 import jax
-import matplotlib.pyplot as plt
 import wandb
 from tqdm.auto import tqdm
 
 from mlax.datasets import make_function_dataset
+from mlax.plot import colors, plt
 
 from .model import LinearRegression, loss_fn
 
@@ -33,7 +33,8 @@ for x, y in tqdm(dataset.shuffle(SEED).batch(BATCH_SIZE).repeat(EPOCHS)):
 
 # plot
 x, y = next(iter(dataset.batch(sys.maxsize)))
-plt.scatter(x, y)
-plt.plot(x, jax.vmap(model)(x), c='r')  # type: ignore
+plt.scatter(x, y, s=3, c=colors[0], label='Noisy Data')
+plt.plot(x, jax.vmap(model)(x), c=colors[1], label='Fitted Line')
+plt.legend()
 # plt.show()
 wandb.log({'plot': wandb.Image(plt)})

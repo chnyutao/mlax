@@ -8,16 +8,13 @@ dependencies = [
     "equinox>=0.12.2",
     "jax>=0.6.0",
     "jaxtyping>=0.3.2",
-    "matplotlib>=3.10.3",
     "tqdm>=4.67.1",
     "wandb>=0.19.11",
 ]
 
 [dependency-groups]
-data = [
-    "grain>=0.2.9",
-    "torchvision>=0.22.0",
-]
+data = ["grain>=0.2.9", "torchvision>=0.22.0"]
+viz = ["matplotlib>=3.10.3", "scienceplots>=2.1.1"]
 
 [tool.uv]
-default-groups = ["data"]
+default-groups = ["data", "viz"]

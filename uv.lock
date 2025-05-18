@@ -492,7 +492,6 @@ dependencies = [
     { name = "equinox" },
     { name = "jax" },
     { name = "jaxtyping" },
-    { name = "matplotlib" },
     { name = "tqdm" },
     { name = "wandb" },
 ]
@@ -502,13 +501,16 @@ data = [
     { name = "grain" },
     { name = "torchvision" },
 ]
+viz = [
+    { name = "matplotlib" },
+    { name = "scienceplots" },
+]
 
 [package.metadata]
 requires-dist = [
     { name = "equinox", specifier = ">=0.12.2" },
     { name = "jax", specifier = ">=0.6.0" },
     { name = "jaxtyping", specifier = ">=0.3.2" },
-    { name = "matplotlib", specifier = ">=3.10.3" },
     { name = "tqdm", specifier = ">=4.67.1" },
     { name = "wandb", specifier = ">=0.19.11" },
 ]
@@ -517,6 +519,10 @@ requires-dist = [
 data = [
     { name = "grain", specifier = ">=0.2.9" },
     { name = "torchvision", specifier = ">=0.22.0" },
+]
+viz = [
+    { name = "matplotlib", specifier = ">=3.10.3" },
+    { name = "scienceplots", specifier = ">=2.1.1" },
 ]
 
 [[package]]
@@ -887,6 +893,18 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/63/70/2bf7780ad2d390a8d301ad0b550f1581eadbd9a20f896afe06353c2a2913/requests-2.32.3.tar.gz", hash = "sha256:55365417734eb18255590a9ff9eb97e9e1da868d4ccd6402399eaf68af20a760", size = 131218, upload-time = "2024-05-29T15:37:49.536Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/f9/9b/335f9764261e915ed497fcdeb11df5dfd6f7bf257d4a6a2a686d80da4d54/requests-2.32.3-py3-none-any.whl", hash = "sha256:70761cfe03c773ceb22aa2f671b4757976145175cdfca038c02654d061d6dcc6", size = 64928, upload-time = "2024-05-29T15:37:47.027Z" },
+]
+
+[[package]]
+name = "scienceplots"
+version = "2.1.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "matplotlib" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/5e/04/aff33daa212cf6dd5427999062aab0289976dd1b0b842752e81ab17aef66/SciencePlots-2.1.1.tar.gz", hash = "sha256:d8d197e3410f87ebdad0b9c265eaab596094fb082d97123e835f6bc32800ab54", size = 10757, upload-time = "2023-11-25T19:10:12.943Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/51/2a/debffdd7061c7a65ab46c51e671b895dc8231c4a14950849c40699eb2070/SciencePlots-2.1.1-py3-none-any.whl", hash = "sha256:2e64d2e93b4f98702f30145dbb70d238f5dc315e227fec331489631232dfc9e0", size = 16472, upload-time = "2023-11-25T19:10:11.01Z" },
 ]
 
 [[package]]
