@@ -45,7 +45,7 @@ class MLP(eqx.Module):
             Output array of shape `(layer_sizes[-1],)`.
         """
         for layer in self.layers:
-            x = jax.nn.relu(layer(x))
+            x = self.activation(layer(x))
         return x
 
 
