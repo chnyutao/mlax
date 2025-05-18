@@ -52,12 +52,12 @@ class MLP(eqx.Module):
 @eqx.filter_jit
 def loss_fn(model: MLP, x: jax.Array, y: jax.Array) -> jax.Array:
     """cross entropy loss"""
-    p = jax.nn.log_softmax(jax.vmap(model)(x), axis=-1)
-    return -jnp.sum(p * y)
+    p = jax.nn.log_softmax(jax.vmap(model)(x))
+    return -jnp.sum(jnp.take_along_axis(p, y, axis=1))
 
 
 @eqx.filter_jit
 def accuracy(model: MLP, x: jax.Array, y: jax.Array) -> jax.Array:
     """accuracy (%)"""
-    p = jax.nn.log_softmax(jax.vmap(model)(x), axis=-1)
-    return jnp.mean(p.argmax(axis=-1) == y.argmax(axis=-1))
+    p = jax.nn.log_softmax(jax.vmap(model)(x))
+    return jnp.mean(p.argmax(axis=1, keepdims=True) == y)

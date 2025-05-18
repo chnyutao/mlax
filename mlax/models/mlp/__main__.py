@@ -1,5 +1,6 @@
 import equinox as eqx
 import jax
+import jax.numpy as jnp
 import wandb
 from tqdm.auto import tqdm
 
@@ -16,8 +17,8 @@ LR = 1e-4
 SEED = 42
 
 # init dataset
-train_set = make_mnist_dataset(train=True)
-test_set = make_mnist_dataset(train=False)
+train_set = make_mnist_dataset(train=True, flatten=True, onehot=False)
+test_set = make_mnist_dataset(train=False, flatten=True, onehot=False)
 
 # init model
 key = jax.random.key(SEED)
@@ -31,7 +32,7 @@ for _ in tqdm(range(EPOCHS)):
         model = eqx.apply_updates(model, jax.tree.map(lambda g: -LR * g, grads))
         wandb.log({'loss': loss})
     # evaluation
-    sum_of_acc = 0
+    accuracies = []
     for x, y in test_set.shuffle(SEED).batch(BATCH_SIZE, drop_remainder=True):
-        sum_of_acc += accuracy(model, x, y)
-    wandb.log({'accuracy': sum_of_acc / (len(test_set) // BATCH_SIZE)})
+        accuracies.append(accuracy(model, x, y))
+    wandb.log({'accuracy': jnp.mean(jnp.array(accuracies))})
