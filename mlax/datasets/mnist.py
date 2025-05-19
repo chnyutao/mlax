@@ -20,7 +20,7 @@ def make_mnist_dataset(
 
     def process_image(image):
         img = jnp.array(image) / 255.0
-        return img.ravel() if flatten else img
+        return img.ravel() if flatten else img[jnp.newaxis, :]
 
     def process_label(label):
         return jax.nn.one_hot(label, num_classes=10) if onehot else jnp.array([label])
