@@ -42,7 +42,7 @@ for _ in tqdm(range(EPOCHS)):
 # plot
 x, _ = next(iter(test_set.batch(N_PLOTS)))
 y = jax.vmap(model)(x).argmax(axis=1)
-for idx in range(4):
+for idx in range(N_PLOTS):
     plt.subplot(1, N_PLOTS, idx + 1)
     plt.imshow(x[idx][0], cmap='gray')
     plt.xticks([])

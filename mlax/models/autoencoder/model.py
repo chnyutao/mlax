@@ -31,7 +31,7 @@ class AutoEncoder(eqx.Module):
         for in_size, out_size in pairwise(layer_sizes):
             layers.append(nn.Linear(in_size, out_size, key=next(keys)))
             layers.append(nn.Lambda(activation))
-        self.encoder = nn.Sequential(layers[:-1])  # remove last activation)
+        self.encoder = nn.Sequential(layers[:-1])  # remove last activation
         layers = []
         for in_size, out_size in pairwise(reversed(layer_sizes)):
             layers.append(nn.Linear(in_size, out_size, key=next(keys)))

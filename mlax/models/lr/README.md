@@ -4,7 +4,7 @@
 
 Simple linear regression with stochastic gradient descent (SGD).
 
-> [!NOTE]
+> [!Note]
 > One can always solve linear regressions analytically with $\theta=(X^TX)^{-1}X^Ty$.
 
 ## Experiment results
