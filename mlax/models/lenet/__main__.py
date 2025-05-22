@@ -1,6 +1,7 @@
 import equinox as eqx
 import jax
 import jax.numpy as jnp
+import jax.random as jr
 import wandb
 from tqdm.auto import tqdm
 
@@ -23,8 +24,8 @@ train_set = make_mnist_dataset(train=True, flatten=False, onehot=False)
 test_set = make_mnist_dataset(train=False, flatten=False, onehot=False)
 
 # init model
-key = jax.random.key(SEED)
-model = LeNet(key, activation=jax.nn.sigmoid)
+key = jr.key(SEED)
+model = LeNet(activation=jax.nn.sigmoid, key=key)
 
 # train loop
 for _ in tqdm(range(EPOCHS)):

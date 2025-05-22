@@ -1,5 +1,6 @@
 import equinox as eqx
 import jax
+import jax.random as jr
 import optax
 import wandb
 from tqdm.auto import tqdm
@@ -22,14 +23,16 @@ SEED = 42
 dataset = make_mnist_dataset(train=True, flatten=True)
 
 # init model
-key, model_key = jax.random.split(jax.random.key(SEED))
-model = VAE(model_key, input_size=784, latent_size=100, hidden_sizes=[200, 200])
+key, model_key = jr.split(jr.key(SEED))
+model = VAE(input_size=784, latent_size=100, hidden_sizes=[200, 200], key=model_key)
 
-# train loop
+# init optimizer
 opt = optax.adam(LR)
 opt_state = opt.init(eqx.filter(model, eqx.is_array))
+
+# train loop
 for x, _ in tqdm(dataset.shuffle(SEED).batch(BATCH_SIZE).repeat(EPOCHS)):
-    key, subkey = jax.random.split(key)
+    key, subkey = jr.split(key)
     loss, grads = eqx.filter_value_and_grad(loss_fn)(model, x, key=subkey)
     updates, opt_state = opt.update(grads, opt_state)
     model = eqx.apply_updates(model, updates)
@@ -37,7 +40,7 @@ for x, _ in tqdm(dataset.shuffle(SEED).batch(BATCH_SIZE).repeat(EPOCHS)):
 
 # plot
 x, _ = next(iter(dataset.batch(N_PLOTS)))
-x_hat = jax.vmap(model)(x, key=jax.random.split(key, N_PLOTS))[0].clip(0, 1)
+x_hat = jax.vmap(model)(x, key=jr.split(key, N_PLOTS))[0].clip(0, 1)
 plt.figure(figsize=(4, 2))
 for row, (title, x) in enumerate({'Original': x, 'Reconstruction': x_hat}.items()):
     for col in range(N_PLOTS):

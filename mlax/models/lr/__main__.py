@@ -2,6 +2,7 @@ import sys
 
 import equinox as eqx
 import jax
+import jax.random as jr
 import wandb
 from tqdm.auto import tqdm
 
@@ -19,7 +20,7 @@ LR = 5e-3
 SEED = 42
 
 # init dataset
-key = jax.random.key(SEED)
+key = jr.key(SEED)
 dataset = make_function_dataset(key, lambda x: 3 * x - 1, eps=0.2)
 
 # init model

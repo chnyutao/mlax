@@ -1,6 +1,7 @@
 import equinox as eqx
 import jax
 import jax.numpy as jnp
+import jax.random as jr
 import wandb
 from tqdm.auto import tqdm
 
@@ -22,8 +23,8 @@ SEED = 42
 dataset = make_mnist_dataset(train=True, flatten=True)
 
 # init model
-key = jax.random.key(SEED)
-model = AutoEncoder(key, layer_sizes=[28 * 28, 256, 64])
+key = jr.key(SEED)
+model = AutoEncoder(layer_sizes=[28 * 28, 256, 64], key=key)
 
 # train loop
 for x, _ in tqdm(dataset.shuffle(SEED).batch(BATCH_SIZE).repeat(EPOCHS)):

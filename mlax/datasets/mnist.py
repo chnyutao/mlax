@@ -5,7 +5,9 @@ from torchvision.datasets import MNIST
 
 
 def make_mnist_dataset(
-    train: bool = True, flatten: bool = False, onehot: bool = False
+    train: bool = True,
+    flatten: bool = False,
+    onehot: bool = False,
 ) -> grain.MapDataset:
     """Load the MNIST database of handwritten digits.
 
